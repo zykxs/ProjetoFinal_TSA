@@ -1,6 +1,6 @@
 #!/bin/bash
 #./pwdGen.sh
-echo 
+echo
 
 # Função p gerar a password
 generate_password() {
@@ -27,12 +27,12 @@ echo
     # Mostrar o txt
     # Copiar para a home do user e apagar txt residual
 
-echo -e "Passwords\n" > passwords.txt
+echo -e "Passwords\n" > pwd.txt
 for ((i = 0; i < $nPwds; i++)); do
     password=$(generate_password "$nChars")
-    echo "Password $((i+1)): $password" >> passwords.txt 
+    echo "Password $((i+1)): $password" >> pwd.txt
 done
 
-cat passwords.txt
-cp passwords.txt ~
-rm passwords.txt
+cp pwd.txt ~
+rm pwd.txt
+cat ~/pwd.txt
