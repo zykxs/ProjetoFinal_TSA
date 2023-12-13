@@ -1,21 +1,38 @@
-#./pwdGen.sh
-
 #!/bin/bash
-echo
+#./pwdGen.sh
+echo 
 
-# Função p gerar password
+# Função p gerar a password
 generate_password() {
-    local password=$(tr -dc 'A-Za-z0-9!@#$%^&*()' < /dev/random | head -c "$chars")
+    local password=$(tr -dc 'A-Za-z0-9!@#$%^&*()' < /dev/random | head -c "$nChars")
     echo "$password"
 }
 
 # Main script
-read -p "nº de caractéres: " nChars
-read -p "nº de passwords: " nPasswords
+while true; do
+    read -p "Nº Caractéres: " nChars
+    # Condição que força pelo menos 16 caractéres
+    if [ "$nChars" -ge 16 ]; then
+        break
+    else
+        echo -e "Introduza um valor igual ou superior a 16.\n"
+    fi
+done
+
+read -p "Nº Passwords: " nPwds
 echo
 
-    # Ciclo pa gerar n passwords
-for ((i = 0; i < $nPasswords; i++)); do
+    # Ciclo p gerar n passwords
+    # Criar ficheiro txt com as passwords
+    # Mostrar o txt
+    # Copiar para a home do user e apagar txt residual
+
+echo -e "Passwords\n" > passwords.txt
+for ((i = 0; i < $nPwds; i++)); do
     password=$(generate_password "$nChars")
-    echo "Pwd $((i+1)): $password"
+    echo "Password $((i+1)): $password" >> passwords.txt 
 done
+
+cat passwords.txt
+cp passwords.txt ~
+rm passwords.txt
