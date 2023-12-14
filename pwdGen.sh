@@ -49,6 +49,7 @@ while true; do
                 ((counter++))
             fi
         done
+        echo
         break
     elif [ "$SavePass" == "N" ] || [ "$SavePass" == "n" ]; then
         break
