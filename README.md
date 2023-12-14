@@ -10,21 +10,20 @@ Gerador/Gestor de Passwords
 ## Descrição e Objetivos
 
 Este projeto serve para criar um gerador/gestor de passwords de acordo com os standards de segurança atuais, tais como:
- - Password com 16 a 25 caractéres
- - Pelo menos 1 caracter dos seguintes conjuntos de caractéres:
+- Password com pelo menos 16 caractéres
+- Pelo menos 1 caracter dos seguintes conjuntos de caractéres:
+  - Maiúsculas;
+  - Minúsculas;
+  - Dígitos;
+  - Caracteres Especiais.
+
+Dito isto, este projeto terá como objetivos:
+- Gerar X passwords com Y (min. 16) caracteres. X e Y são recebidos como inputs.
+  - Escolher os caractéres de forma aleatória:
     - Maiúsculas;
     - Minúsculas;
     - Dígitos;
-    - Caracteres Especiais.
-
-
-Dito isto, este projeto terá como objetivos:
-- Gerar X passwords com Y caracteres. X e Y são recebidos como inputs.
- - Escolher os caractéres de forma aleatória.
- - Avaliar passwords geradas com base nos seguintes requisitos:
-   - Ter pelo menos 16 caracteres E pelo menos 1 caracter dos seguintes conjuntos:
-   - Maiúsculas;
-   - Minúsculas;
-   - Dígitos;
-   - Caractéres Especiais.
- - Escrever as passwords.
+    - Caractéres Especiais.
+ - Guardar as passwords em dois ficheiros:
+    - ficheiro pwd.txt, contém as passwords em cleartext;
+    - ficheiro shadow.txt, contém as passwords em hash SHA-256.
