@@ -27,7 +27,4 @@ Dito isto, este projeto terá como objetivos:
    - Minúsculas;
    - Dígitos;
    - Caractéres Especiais.
- - Escrever as passwords:
-   - Se as passwords cumprirem os requisitos, escrever as passwords num ficheiro txt
-   - Se não, pedir para gerar novas passwords.
-     
+ - Escrever as passwords.

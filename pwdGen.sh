@@ -4,7 +4,7 @@ echo
 
 # Função p gerar a password
 generate_password() {
-    local password=$(tr -dc 'A-Za-z0-9!@#$%^&*()' < /dev/random | head -c "$nChars")
+    local password=$(tr -dc 'A-Za-z0-9!@#$%^&*()' < /dev/urandom | head -c "$nChars")
     echo "$password"
 }
 
@@ -29,7 +29,7 @@ echo
 
 echo -e "Passwords\n" > pwd.txt
 for ((i = 0; i < $nPwds; i++)); do
-    password=$(generate_password "$nChars")
+    password=$(generate_password)
     echo "Password $((i+1)): $password" >> pwd.txt
 done
 
