@@ -33,6 +33,7 @@ for ((i = 0; i < $nPwds; i++)); do
 done
 
 # Pergunta ao user se quer guardar as suas passwords
+counter=1
 while true; do
     read -p "Deseja guardar as suas próprias passwords? [S/N]: " SavePass
     echo
@@ -44,7 +45,8 @@ while true; do
         while [ "$userPass" != "Q" ]; do
             read -p "Introduza a sua password (Q para sair): " userPass
             if [ "$userPass" != "Q" ]; then
-                echo "$userPass" >> pwd.txt
+                echo "$counter. $userPass" >> pwd.txt
+                ((counter++))
             fi
         done
         break
