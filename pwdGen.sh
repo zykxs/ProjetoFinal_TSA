@@ -1,8 +1,11 @@
 #!/bin/bash
-#./pwdGen.sh
+# ./pwdGen.sh
 echo
 
-# Função p gerar a password
+# Função para gerar a password
+# Gera uma cadeia de caracteres aleatória ao obter bytes pseudoaleatórios de /dev/urandom
+# Filtra caracteres indesejados usando tr e, em seguida, seleciona um número específico de caracteres usando head -c.
+# O número de caracteres a gerar é determinado pela variável $nChars definida mais tarde.
 generate_password() {
     local password=$(tr -dc 'A-Za-z0-9!@#$%^&*()' < /dev/urandom | head -c "$nChars")
     echo "$password"
@@ -22,16 +25,39 @@ done
 read -p "Nº Passwords: " nPwds
 echo
 
-    # Ciclo p gerar n passwords
-    # Criar ficheiro txt com as passwords
-    # Mostrar o txt
-    # Copiar para a home do user e apagar txt residual
-
-echo -e "Passwords\n" > pwd.txt
+# Ciclo para gerar n passwords
+echo -e "Passwords geradas:" > pwd.txt
 for ((i = 0; i < $nPwds; i++)); do
     password=$(generate_password)
-    echo "Password $((i+1)): $password" >> pwd.txt
+    echo "$((i+1)). $password" >> pwd.txt
 done
+
+# Pergunta ao user se quer guardar as suas passwords
+while true; do
+    read -p "Deseja guardar as suas próprias passwords? [S/N]: " SavePass
+    echo
+
+    if [ "$SavePass" == "S" ] || [ "$SavePass" == "s" ]; then
+        echo "" >> pwd.txt
+        echo -e "Passwords do utilizador:" >> pwd.txt
+        userPass=""
+        while [ "$userPass" != "Q" ]; do
+            read -p "Introduza a sua password (Q para sair): " userPass
+            if [ "$userPass" != "Q" ]; then
+                echo "$userPass" >> pwd.txt
+            fi
+        done
+        break
+    elif [ "$SavePass" == "N" ] || [ "$SavePass" == "n" ]; then
+        break
+    else
+        echo -e "Opção Inválida. Introduza S ou N.\n"
+    fi
+done
+
+# Copiar ficheiro para a home do utilizador
+# Apagar ficheiro residual
+# Mostrar ficheiro com as passwords
 
 cp pwd.txt ~
 rm pwd.txt
